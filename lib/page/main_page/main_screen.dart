@@ -1,4 +1,4 @@
-import 'package:admin/page/main_page/MenuController.dart';
+import 'package:admin/page/main_page/main_controller.dart';
 import 'package:admin/responsive/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,12 +7,12 @@ import 'components/dashboard/dashboard_screen.dart';
 import 'components/side_menu.dart';
 
 class MainScreen extends StatelessWidget {
- final MenuController menuController = Get.put(MenuController());
+ final MainController mainController = Get.put(MainController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: menuController.scaffoldKey,
+      key: mainController.scaffoldKey,
       drawer: SideMenu(),
       body: SafeArea(
         child: Row(

@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:admin/models/base_model.dart' as base_parser;
+import 'package:admin/service/http_url_service.dart';
+import 'package:admin/service/resource/login_resource.dart';
 import 'package:admin/utils/log_utils.dart';
 import 'package:admin/utils/text_utils.dart';
 import 'package:flutter/foundation.dart';
@@ -141,7 +143,8 @@ class APIServices {
     final response = await http.post(url, headers: headers, body: jsonBody);
     _logResponseBody(response.body, httpUrl);
     ApiResponse? apiResponse =
-        await compute(base_parser.parseInBackground, response.body);
+        await compute(base_parser.parseInBackground, response.);
+    print( response.body);
     return apiResponse;
   }
 
@@ -243,5 +246,10 @@ class APIServices {
     Map<String, String> headers = baseHeadersTasker;
     headers['Content-Type'] = 'application/json';
     return headers;
+  }
+
+  static Future<ApiResponse?> login(LoginResource resource) async {
+    return await _callPostAPI(
+        HttpUrlService.login, jsonEncode(resource));
   }
 }
