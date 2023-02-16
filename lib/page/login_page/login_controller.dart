@@ -1,60 +1,57 @@
-import 'package:admin/models/user.dart';
 import 'package:admin/routes/app_routes.dart';
 import 'package:admin/service/resource/login_resource.dart';
 import 'package:admin/service/service_helper.dart';
 import 'package:admin/utils/app_shared_perf_helper.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 class LoginController extends GetxController{
   final RxString username = "".obs;
   final RxString password = "".obs;
   final RxBool isLoading = false.obs;
-  final formKey = GlobalKey<FormState>();
   final loginResource = LoginResource(username: "", password: "");
+  final RxString erUsername = "".obs;
+  final RxBool erValidateUsername = true.obs;
+  final RxString erPassword = "".obs;
+  final RxBool erValidatePassword = true.obs;
 
-  void doLogin(){
-    isLoading.value = true;
-      isLoading.value = false;
-      if (username.value == "admin" && password.value == "admin") {
-        Get.rootDelegate.toNamed(Paths.homePage);
-      } else {
-        // show an error if login is unsuccessful
-        Get.snackbar("Error", "Incorrect username or password");
-      }
+
+  void validateUsername(){
+    if(username.value == "" || username.value.isEmpty){
+      erUsername.value = "Please enter username";
+      erValidateUsername.value = false;
+    } else{
+      erUsername.value = "";
+      erValidateUsername.value = true;
+    }
   }
 
-  String? validateUsername(String value){
-    if(value.isEmpty){
-      return 'Please enter username text';
-    }else if(value.length < 6 || value.length> 30 ){
-      return 'Please enter between 6 and 30 characters';
+  void validatePassword(){
+    if(password.value == "" || password.value.isEmpty){
+      erPassword.value = "Please enter password";
+      erValidatePassword.value = false;
+    } else if(password.value.length <6 || password.value.length >30){
+      erPassword.value = "Please enter a password between 6 and 30 characters";
+      erValidatePassword.value = false;
+    }else{
+      erPassword.value = "";
+      erValidatePassword.value = true;
     }
-    return null ;
   }
-  String? validatePassword(String value) {
-    if (value.isEmpty) {
-      return "Password is required";
-    }else if(value.length < 6 || value.length> 30 ){
-      return 'Please enter between 6 and 30 characters';
-    }
-    return null;
-  }
+
   void login(){
     loginResource.username = username.value;
     loginResource.password = password.value;
     ServiceHelper.login(loginResource).then((response) async {
-  print(response?.data);
-      if (response!.statusCode == 200) {
-        //store token, customer id
-        Map<String, dynamic> data = response['access_token'];
-        print(data['access_token']);
-        AppSharedPrefHelper.storeAuthToken(data['access_token']);
-        // User user=User(username: username, id: id, name: name, code_role: code_role)
-        //  user = new User.fromJson(response.data);
-        // user = response.data;
-        Get.rootDelegate.toNamed(Paths.homePage);
+      if (response?.statusCode == 201) {
+        String? data = response?.body;
+        Map<String, dynamic> payload = JwtDecoder.decode(data!);
+        AppSharedPrefHelper.storeAuthToken(data);
+        if(payload['role_code']  == "admin" || payload['role_code'] == "super-admin"){
+          Get.rootDelegate.toNamed(Paths.homePage);
+        }else{
+          Get.snackbar("Notification", "You don't have access");
+        }
       } else {
         Get.snackbar("Error", "Incorrect username or password");
       }

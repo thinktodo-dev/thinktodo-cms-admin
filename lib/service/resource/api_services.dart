@@ -5,6 +5,7 @@ import 'package:admin/service/resource/login_resource.dart';
 import 'package:admin/utils/log_utils.dart';
 import 'package:admin/utils/text_utils.dart';
 import 'package:flutter/foundation.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 
@@ -143,9 +144,19 @@ class APIServices {
     final response = await http.post(url, headers: headers, body: jsonBody);
     _logResponseBody(response.body, httpUrl);
     ApiResponse? apiResponse =
-        await compute(base_parser.parseInBackground, response.);
-    print( response.body);
+        await compute(base_parser.parseInBackground, response.body);
     return apiResponse;
+  }
+
+  static Future<http.Response> _callLoginPostAPI(
+      String httpUrl, String jsonBody) async {
+    var url = Uri.parse(httpUrl);
+    Map<String, String> headers = await _modifyHeaders();
+    LogUtils.log("_TAG", 'HttpURL: $httpUrl');
+    LogUtils.log("_TAG", 'JSON Body: $jsonBody');
+    LogUtils.log("_TAG", 'Headers: $headers');
+    final response = await http.post(url, headers: headers, body: jsonBody);
+    return response;
   }
 
   static Future<ApiResponse?> _callPutAPI(
@@ -248,8 +259,8 @@ class APIServices {
     return headers;
   }
 
-  static Future<ApiResponse?> login(LoginResource resource) async {
-    return await _callPostAPI(
+  static Future<http.Response?> login(LoginResource resource) async {
+    return await _callLoginPostAPI(
         HttpUrlService.login, jsonEncode(resource));
   }
 }
