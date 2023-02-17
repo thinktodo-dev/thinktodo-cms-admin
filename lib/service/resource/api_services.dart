@@ -5,7 +5,6 @@ import 'package:admin/service/resource/login_resource.dart';
 import 'package:admin/utils/log_utils.dart';
 import 'package:admin/utils/text_utils.dart';
 import 'package:flutter/foundation.dart';
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 
@@ -78,6 +77,8 @@ class APIServices {
     Map<String, String> headers = await _baseHeaders();
 
     String? loginToken = AppSharedPrefHelper.getObjectByKey(authToken);
+    print("helloo");
+    print(loginToken);
     if (loginToken != null) {
       headers['Authorization'] = "Bearer $loginToken";
       bool isEnableLogHeader = true;
@@ -91,7 +92,7 @@ class APIServices {
     return headers;
   }
 
-  static Future<ApiResponse?> _callGetAPI(
+  static Future<http.Response> _callGetAPI(
       {required String httpUrl, String? param = ''}) async {
     httpUrl += param != '' ? '$param' : '';
     var url = Uri.parse(httpUrl);
@@ -99,10 +100,7 @@ class APIServices {
     LogUtils.log("_TAG", 'HttpURL: $httpUrl');
     LogUtils.log("_TAG", 'Headers: $headers');
     final response = await http.get(url, headers: headers);
-    _logResponseBody(response.body, httpUrl);
-    ApiResponse? apiResponse =
-        await compute(base_parser.parseInBackground, response.body);
-    return apiResponse;
+    return response;
   }
 
   static Future<ApiResponse?> _callPostAPITasker(
@@ -116,7 +114,7 @@ class APIServices {
     final response = await http.post(url, headers: headers, body: jsonBody);
     _logResponseBody(response.body, httpUrl);
     ApiResponse? apiResponse =
-        await compute(base_parser.parseInBackground, response.body);
+    await compute(base_parser.parseInBackground, response.body);
     return apiResponse;
   }
 
@@ -130,7 +128,7 @@ class APIServices {
     final response = await http.delete(url, headers: headers);
     _logResponseBody(response.body, httpUrl);
     ApiResponse? apiResponse =
-        await compute(base_parser.parseInBackground, response.body);
+    await compute(base_parser.parseInBackground, response.body);
     return apiResponse;
   }
 
@@ -144,7 +142,7 @@ class APIServices {
     final response = await http.post(url, headers: headers, body: jsonBody);
     _logResponseBody(response.body, httpUrl);
     ApiResponse? apiResponse =
-        await compute(base_parser.parseInBackground, response.body);
+    await compute(base_parser.parseInBackground, response.body);
     return apiResponse;
   }
 
@@ -169,7 +167,7 @@ class APIServices {
     final response = await http.put(url, headers: headers, body: jsonBody);
     _logResponseBody(response.body, httpUrl);
     ApiResponse? apiResponse =
-        await compute(base_parser.parseInBackground, response.body);
+    await compute(base_parser.parseInBackground, response.body);
     return apiResponse;
   }
 
@@ -184,7 +182,7 @@ class APIServices {
     final response = await http.put(url, headers: headers, body: jsonBody);
     _logResponseBody(response.body, httpUrl);
     ApiResponse? apiResponse =
-        await compute(base_parser.parseInBackground, response.body);
+    await compute(base_parser.parseInBackground, response.body);
     return apiResponse;
   }
 
@@ -232,7 +230,7 @@ class APIServices {
     var response = await http.Response.fromStream(streamedResponse);
     _logResponseBody(response.body, httpUrl);
     ApiResponse? apiResponse =
-        await compute(base_parser.parseInBackground, response.body);
+    await compute(base_parser.parseInBackground, response.body);
     return apiResponse;
   }
 
@@ -263,4 +261,9 @@ class APIServices {
     return await _callLoginPostAPI(
         HttpUrlService.login, jsonEncode(resource));
   }
+
+  static Future<http.Response?> verifyToken( ) async {
+    return await _callGetAPI(httpUrl: HttpUrlService.verifyToken);
+  }
+
 }

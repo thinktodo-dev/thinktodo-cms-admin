@@ -1,9 +1,11 @@
+import 'dart:convert';
+
+import 'package:admin/page/splash_page/splash_controller.dart';
 import 'package:admin/routes/app_routes.dart';
 import 'package:admin/service/resource/login_resource.dart';
 import 'package:admin/service/service_helper.dart';
 import 'package:admin/utils/app_shared_perf_helper.dart';
 import 'package:get/get.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
 
 class LoginController extends GetxController{
   final RxString username = "".obs;
@@ -14,6 +16,7 @@ class LoginController extends GetxController{
   final RxBool erValidateUsername = true.obs;
   final RxString erPassword = "".obs;
   final RxBool erValidatePassword = true.obs;
+  final splashController = SplashController();
 
 
   void validateUsername(){
@@ -44,19 +47,24 @@ class LoginController extends GetxController{
     loginResource.password = password.value;
     ServiceHelper.login(loginResource).then((response) async {
       if (response?.statusCode == 201) {
-        String? data = response?.body;
-        Map<String, dynamic> payload = JwtDecoder.decode(data!);
-        AppSharedPrefHelper.storeAuthToken(data);
-        if(payload['role_code']  == "admin" || payload['role_code'] == "super-admin"){
-          Get.rootDelegate.toNamed(Paths.homePage);
-        }else{
-          Get.snackbar("Notification", "You don't have access");
-        }
+        Map<String, dynamic> data = json.decode(response!.body);
+        AppSharedPrefHelper.storeAuthToken(data['access_token']);
+        verifyToken();
       } else {
         Get.snackbar("Error", "Incorrect username or password");
       }
     }, onError: (err) {
       // LogUtils.handleSystemError(err);
+    });
+  }
+  void verifyToken(){
+    ServiceHelper.verifyToken().then((response) async {
+      Map<String, dynamic> data = json.decode(response!.body);
+      if(data['role_code'] == 'admin' || data['role_code'] == 'super_admin'){
+        Get.rootDelegate.toNamed(Paths.homePage);
+      }else{
+        Get.snackbar("Notification", "You don't have access");
+      }
     });
   }
 }
