@@ -1,8 +1,11 @@
 import 'dart:convert';
 import 'package:admin/models/base_model.dart' as base_parser;
+import 'package:admin/service/http_url_service.dart';
+import 'package:admin/service/resource/login_resource.dart';
 import 'package:admin/utils/log_utils.dart';
 import 'package:admin/utils/text_utils.dart';
 import 'package:flutter/foundation.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 
@@ -145,6 +148,17 @@ class APIServices {
     return apiResponse;
   }
 
+  static Future<http.Response> _callLoginPostAPI(
+      String httpUrl, String jsonBody) async {
+    var url = Uri.parse(httpUrl);
+    Map<String, String> headers = await _modifyHeaders();
+    LogUtils.log("_TAG", 'HttpURL: $httpUrl');
+    LogUtils.log("_TAG", 'JSON Body: $jsonBody');
+    LogUtils.log("_TAG", 'Headers: $headers');
+    final response = await http.post(url, headers: headers, body: jsonBody);
+    return response;
+  }
+
   static Future<ApiResponse?> _callPutAPI(
       String httpUrl, String jsonBody) async {
     var url = Uri.parse(httpUrl);
@@ -243,5 +257,10 @@ class APIServices {
     Map<String, String> headers = baseHeadersTasker;
     headers['Content-Type'] = 'application/json';
     return headers;
+  }
+
+  static Future<http.Response?> login(LoginResource resource) async {
+    return await _callLoginPostAPI(
+        HttpUrlService.login, jsonEncode(resource));
   }
 }

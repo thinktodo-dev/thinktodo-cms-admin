@@ -30,7 +30,7 @@ class MyApp {
       themeMode: ThemeMode.dark,
       theme: ThemeData(
         primarySwatch: Colors.green,
-          brightness: Brightness.dark,
+          brightness: Brightness.light,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         textTheme: TextTheme(
           // for all TextWidgets.
@@ -49,6 +49,7 @@ class MyApp {
       color: kColorWhite,
       title: "THINKTODO CMS",
       initialBinding: Binding(),
+
       unknownRoute: GetPage(
           name: '/not-found',
           page: () => const PageNotFound(),

@@ -11,4 +11,5 @@ abstract class Routes {
 }
 abstract class Paths{
   static const homePage = '/';
+  static const login = '/login';
 }
