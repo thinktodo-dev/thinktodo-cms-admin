@@ -10,6 +10,7 @@ abstract class Routes {
 
 }
 abstract class Paths{
-  static const homePage = '/';
+  static const splashPage = '/';
+  static const homePage = '/home';
   static const login = '/login';
 }
