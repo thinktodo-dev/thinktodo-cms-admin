@@ -22,32 +22,26 @@ class UserManagementScreen extends StatelessWidget {
       // ),
       body: Center(
         child: SizedBox(
-          width: 600,
-          height: 700,
+
           child: Column(
             children: [
               Container(
                 color: Colors.green,
                 height: 160,
-                width: 500,
-                child: Expanded(
-                  flex: 1,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text(
-                        'USER MANAGEMENT',
-                        style:TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      'USER MANAGEMENT',
+                      style:TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
               Expanded(
-                flex: 4,
                 child: Column(
                   children: [
                     Row(
