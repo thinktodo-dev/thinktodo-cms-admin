@@ -1,4 +1,5 @@
 import 'package:admin/models/user_model.dart';
+import 'package:admin/routes/app_routes.dart';
 import 'package:admin/service/resource/user_resource.dart';
 import 'package:admin/service/resource/user_update_resource.dart';
 import 'package:admin/service/service_helper.dart';
@@ -51,7 +52,7 @@ class SuperAdminController extends GetxController with GetSingleTickerProviderSt
 
   void edit(int index){
     userUpdateResource.value = UserUpdateResource.fromJson(userList[index].toJson());
-    controller.animateTo(2);
+    Get.rootDelegate.toNamed(Paths.superAdminEdit);
   }
 
   void updateAcount(){
