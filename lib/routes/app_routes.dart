@@ -13,4 +13,5 @@ abstract class Paths{
   static const splashPage = '/';
   static const homePage = '/home';
   static const login = '/login';
+  static const superAdmin = '/superadmin';
 }

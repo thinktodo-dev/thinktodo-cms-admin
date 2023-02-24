@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:admin/models/base_model.dart' as base_parser;
 import 'package:admin/service/http_url_service.dart';
 import 'package:admin/service/resource/login_resource.dart';
+import 'package:admin/service/resource/user_resource.dart';
+import 'package:admin/service/resource/user_update_resource.dart';
 import 'package:admin/utils/log_utils.dart';
 import 'package:admin/utils/text_utils.dart';
 import 'package:flutter/foundation.dart';
@@ -77,7 +79,6 @@ class APIServices {
     Map<String, String> headers = await _baseHeaders();
 
     String? loginToken = AppSharedPrefHelper.getObjectByKey(authToken);
-    print("helloo");
     print(loginToken);
     if (loginToken != null) {
       headers['Authorization'] = "Bearer $loginToken";
@@ -266,4 +267,21 @@ class APIServices {
     return await _callGetAPI(httpUrl: HttpUrlService.verifyToken);
   }
 
+  static Future<ApiResponse?> createAccount(UserResource resource) async {
+    return await _callPostAPI(
+        HttpUrlService.createAccount, jsonEncode(resource));
+  }
+
+  static Future<ApiResponse?> updateAccount(UserUpdateResource resource) async {
+    return await _callPutAPIWithParam(
+        HttpUrlService.updateAccount, jsonEncode(resource),resource.id);
+  }
+
+  static Future<ApiResponse?> deleteAccount(UserResource resource) async {
+    return await _callDeleteAPI(httpUrl: HttpUrlService.deleteAccount, param: resource.id);
+  }
+
+  static Future<http.Response?> getListAccount( ) async {
+    return await _callGetAPI(httpUrl: HttpUrlService.getListAccount);
+  }
 }
