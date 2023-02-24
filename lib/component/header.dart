@@ -2,6 +2,7 @@ import 'package:admin/page/main_page/main_controller.dart';
 import 'package:admin/responsive/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../constants/constants.dart';
 
@@ -22,7 +23,7 @@ class Header extends StatelessWidget {
         if (!Responsive.isMobile(context))
           Text(
             "Dashboard",
-            style: Theme.of(context).textTheme.headline6,
+            style:Get.textTheme.titleLarge?.copyWith(color: Colors.white),
           ),
         if (!Responsive.isMobile(context))
           Spacer(flex: Responsive.isDesktop(context) ? 2 : 1),
@@ -61,7 +62,10 @@ class ProfileCard extends StatelessWidget {
             Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-              child: Text("Angelina Jolie"),
+              child: Text(
+                  "Angelina Jolie",
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           Icon(Icons.keyboard_arrow_down),
         ],

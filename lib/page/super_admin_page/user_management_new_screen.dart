@@ -1,9 +1,9 @@
-import 'package:admin/page/super_admin_page/super_admin_controller.dart';
+import 'package:admin/page/super_admin_page/user_management_controller.dart';
 import 'package:admin/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-class SuperAdminNewScreen extends StatelessWidget {
-  final SuperAdminController superAdminController = Get.put(SuperAdminController());
+class UserManagementNewScreen extends StatelessWidget {
+  final UserManagementController userManagementController = Get.put(UserManagementController());
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class SuperAdminNewScreen extends StatelessWidget {
                     children: [
                       ElevatedButton.icon(
                         onPressed: (){
-                          Get.rootDelegate.toNamed(Paths.superAdmin);
+                          Get.rootDelegate.toNamed(Paths.userManagement);
                         },
                         icon: Icon(Icons.backspace_outlined),
                         label: Text('Back')
@@ -59,14 +59,14 @@ class SuperAdminNewScreen extends StatelessWidget {
                             hintText: 'Enter username',
                             labelText: 'Username',
                           ),
-                          controller: TextEditingController(text: superAdminController.userResource.value.username),
-                          onChanged: (value) => superAdminController.userResource.value.username = value,
+                          controller: TextEditingController(text: userManagementController.userResource.value.username),
+                          onChanged: (value) => userManagementController.userResource.value.username = value,
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 40.0),
                         child: Text(
-                          '${superAdminController.erUsernameNew.value}',
+                          '${userManagementController.erUsernameNew.value}',
                           style: TextStyle(
                             color: Colors.red,
                           ),
@@ -82,14 +82,14 @@ class SuperAdminNewScreen extends StatelessWidget {
                               hintText: 'Enter password',
                               labelText: 'Password'
                           ),
-                          controller: TextEditingController(text: superAdminController.userResource.value.password),
-                          onChanged: (value) => superAdminController.userResource.value.password = value,
+                          controller: TextEditingController(text: userManagementController.userResource.value.password),
+                          onChanged: (value) => userManagementController.userResource.value.password = value,
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 40.0),
                         child: Text(
-                          '${superAdminController.erPasswordNew.value}',
+                          '${userManagementController.erPasswordNew.value}',
                           style: TextStyle(
                               color: Colors.red
                           ),
@@ -104,14 +104,14 @@ class SuperAdminNewScreen extends StatelessWidget {
                               hintText: 'Enter email',
                               labelText: 'Email'
                           ),
-                          controller: TextEditingController(text: superAdminController.userResource.value.email),
-                          onChanged: (value) => superAdminController.userResource.value.email = value,
+                          controller: TextEditingController(text: userManagementController.userResource.value.email),
+                          onChanged: (value) => userManagementController.userResource.value.email = value,
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 40.0),
                         child: Text(
-                          '${superAdminController.erEmailNew.value}',
+                          '${userManagementController.erEmailNew.value}',
                           style: TextStyle(
                               color: Colors.red
                           ),
@@ -126,14 +126,14 @@ class SuperAdminNewScreen extends StatelessWidget {
                               hintText: 'Enter name',
                               labelText: 'Name'
                           ),
-                          controller: TextEditingController(text: superAdminController.userResource.value.name),
-                          onChanged: (value) => superAdminController.userResource.value.name = value,
+                          controller: TextEditingController(text: userManagementController.userResource.value.name),
+                          onChanged: (value) => userManagementController.userResource.value.name = value,
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 40.0),
                         child: Text(
-                          '${superAdminController.erNameNew.value}',
+                          '${userManagementController.erNameNew.value}',
                           style: TextStyle(
                               color: Colors.red
                           ),
@@ -149,9 +149,9 @@ class SuperAdminNewScreen extends StatelessWidget {
                               height: 40,
                               child: ElevatedButton(
                                 onPressed: (){
-                                  superAdminController.validateNew();
-                                  if(superAdminController.validateFormNew.value == true){
-                                    superAdminController.createAccount();
+                                  userManagementController.validateNew();
+                                  if(userManagementController.validateFormNew.value == true){
+                                    userManagementController.createAccount();
                                   }
                                 },
                                 child: Text('Submit'),
@@ -162,7 +162,7 @@ class SuperAdminNewScreen extends StatelessWidget {
                               height: 40,
                               child: ElevatedButton(
                                 onPressed: (){
-                                  superAdminController.refreshForm();
+                                  userManagementController.refreshForm();
                                 },
                                 child: Text('Refresh'),
                               ),

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
 
-class SuperAdminController extends GetxController with GetSingleTickerProviderStateMixin{
+class UserManagementController extends GetxController with GetSingleTickerProviderStateMixin{
   final RxString erUsernameNew ="".obs;
   final RxString erPasswordNew ="".obs;
   final RxString erEmailNew ="".obs;
@@ -43,7 +43,7 @@ class SuperAdminController extends GetxController with GetSingleTickerProviderSt
   }
 
   void getListAccount(){
-    ServiceHelper.getListAccount().then((response) async {
+    ServiceHelper.getListUser().then((response) async {
       Map<String, dynamic> data = json.decode(response!.body);
       List<dynamic> item = data['items'];
       item.forEach((user) {userList.value.add(UserModel.fromJson(user)); });
@@ -52,11 +52,11 @@ class SuperAdminController extends GetxController with GetSingleTickerProviderSt
 
   void edit(int index){
     userUpdateResource.value = UserUpdateResource.fromJson(userList[index].toJson());
-    Get.rootDelegate.toNamed(Paths.superAdminEdit);
+    Get.rootDelegate.toNamed(Paths.userManagementEdit);
   }
 
   void updateAcount(){
-    ServiceHelper.updateAccount(userUpdateResource.value).then((response) async {
+    ServiceHelper.updateUser(userUpdateResource.value).then((response) async {
       if(response!.isSuccess()){
         Map<String, dynamic> data = response?.data;
         userResource.refresh();
@@ -72,7 +72,7 @@ class SuperAdminController extends GetxController with GetSingleTickerProviderSt
   }
 
   void createAccount(){
-    ServiceHelper.createAccount(userResource.value).then((response) async {
+    ServiceHelper.createUser(userResource.value).then((response) async {
       if(response!.isSuccess()){
         Map<String, dynamic> data = response?.data;
         userResource.refresh();
@@ -112,7 +112,7 @@ class SuperAdminController extends GetxController with GetSingleTickerProviderSt
 
   void deleteAccount(int index){
     userResource.value = UserResource.fromJson(userList[index].toJson());
-    ServiceHelper.deleteAccount(userResource.value).then((response) async {
+    ServiceHelper.deleteUser(userResource.value).then((response) async {
       if(response!.isSuccess()){
         Map<String, dynamic> data = response?.data;
         userResource.refresh();

@@ -67,13 +67,23 @@ DataRow recentFileDataRow(RecentFile fileInfo) {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-              child: Text(fileInfo.title!),
+              child: Text(
+                  fileInfo.title!,
+                  style: TextStyle(color: Colors.white),
+              ),
             ),
           ],
         ),
       ),
-      DataCell(Text(fileInfo.date!)),
-      DataCell(Text(fileInfo.size!)),
+      DataCell(Text(
+          fileInfo.date!,
+            style: TextStyle(color: Colors.white),
+          )
+        ),
+      DataCell(Text(
+          fileInfo.size!,
+          style: TextStyle(color: Colors.white),
+      )),
     ],
   );
 }

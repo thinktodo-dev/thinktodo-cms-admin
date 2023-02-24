@@ -13,7 +13,7 @@ abstract class Paths{
   static const splashPage = '/';
   static const homePage = '/home';
   static const login = '/login';
-  static const superAdmin = '/superadmin';
-  static const superAdminNew = '/superadminnew';
-  static const superAdminEdit = '/superadminedit';
+  static const userManagement = '/usermanagement';
+  static const userManagementNew = '/usermanagementnew';
+  static const userManagementEdit = '/usermanagementedit';
 }

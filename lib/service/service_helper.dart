@@ -14,20 +14,20 @@ class ServiceHelper {
     return await APIServices.verifyToken();
   }
 
-  static Future<Response?> getListAccount() async {
-    return await APIServices.getListAccount();
+  static Future<Response?> getListUser() async {
+    return await APIServices.getListUser();
   }
 
-  static Future<ApiResponse?> createAccount(UserResource resource) async {
-    return await APIServices.createAccount(resource);
+  static Future<ApiResponse?> createUser(UserResource resource) async {
+    return await APIServices.createUser(resource);
   }
 
-  static Future<ApiResponse?> updateAccount(UserUpdateResource resource) async {
-    return await APIServices.updateAccount(resource);
+  static Future<ApiResponse?> updateUser(UserUpdateResource resource) async {
+    return await APIServices.updateUser(resource);
   }
 
-  static Future<ApiResponse?> deleteAccount(UserResource resource) async {
-    return await APIServices.deleteAccount(resource);
+  static Future<ApiResponse?> deleteUser(UserResource resource) async {
+    return await APIServices.deleteUser(resource);
   }
 
 }

@@ -267,21 +267,21 @@ class APIServices {
     return await _callGetAPI(httpUrl: HttpUrlService.verifyToken);
   }
 
-  static Future<ApiResponse?> createAccount(UserResource resource) async {
+  static Future<ApiResponse?> createUser(UserResource resource) async {
     return await _callPostAPI(
         HttpUrlService.createAccount, jsonEncode(resource));
   }
 
-  static Future<ApiResponse?> updateAccount(UserUpdateResource resource) async {
+  static Future<ApiResponse?> updateUser(UserUpdateResource resource) async {
     return await _callPutAPIWithParam(
         HttpUrlService.updateAccount, jsonEncode(resource),resource.id);
   }
 
-  static Future<ApiResponse?> deleteAccount(UserResource resource) async {
+  static Future<ApiResponse?> deleteUser(UserResource resource) async {
     return await _callDeleteAPI(httpUrl: HttpUrlService.deleteAccount, param: resource.id);
   }
 
-  static Future<http.Response?> getListAccount( ) async {
+  static Future<http.Response?> getListUser( ) async {
     return await _callGetAPI(httpUrl: HttpUrlService.getListAccount);
   }
 }

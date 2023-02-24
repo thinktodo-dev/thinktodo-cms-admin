@@ -1,9 +1,9 @@
-import 'package:admin/page/super_admin_page/super_admin_controller.dart';
+import 'package:admin/page/super_admin_page/user_management_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SuperAdminEditScreen extends StatelessWidget {
-  final SuperAdminController superAdminController = Get.put(SuperAdminController());
+class UserManagementEditScreen extends StatelessWidget {
+  final UserManagementController userManagementController = Get.put(UserManagementController());
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +23,14 @@ class SuperAdminEditScreen extends StatelessWidget {
                         hintText: 'Enter username',
                         labelText: 'Username'
                     ),
-                    controller: TextEditingController(text: superAdminController.userUpdateResource.value.username),
-                    onChanged: (value) => superAdminController.userUpdateResource.value.username = value,
+                    controller: TextEditingController(text: userManagementController.userUpdateResource.value.username),
+                    onChanged: (value) => userManagementController.userUpdateResource.value.username = value,
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 40.0),
                   child: Text(
-                    '${superAdminController.erUsername.value}',
+                    '${userManagementController.erUsername.value}',
                     style: TextStyle(
                         color: Colors.red
                     ),
@@ -46,14 +46,14 @@ class SuperAdminEditScreen extends StatelessWidget {
                         labelText: 'Email'
                     ),
                     // controller: superAdminController.user.value['email'],
-                    controller: TextEditingController(text: superAdminController.userUpdateResource.value.email),
-                    onChanged: (value) => superAdminController.userUpdateResource.value.email = value,
+                    controller: TextEditingController(text: userManagementController.userUpdateResource.value.email),
+                    onChanged: (value) => userManagementController.userUpdateResource.value.email = value,
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 40.0),
                   child: Text(
-                    '${superAdminController.erEmail.value}',
+                    '${userManagementController.erEmail.value}',
                     style: TextStyle(
                         color: Colors.red
                     ),
@@ -69,14 +69,14 @@ class SuperAdminEditScreen extends StatelessWidget {
                         labelText: 'Name'
                     ),
                     // controller: superAdminController.user.value['name'],
-                    controller: TextEditingController(text: superAdminController.userUpdateResource.value.name),
-                    onChanged: (value) => superAdminController.userUpdateResource.value.name = value,
+                    controller: TextEditingController(text: userManagementController.userUpdateResource.value.name),
+                    onChanged: (value) => userManagementController.userUpdateResource.value.name = value,
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 40.0),
                   child: Text(
-                    '${superAdminController.erName.value}',
+                    '${userManagementController.erName.value}',
                     style: TextStyle(
                         color: Colors.red
                     ),
@@ -88,10 +88,10 @@ class SuperAdminEditScreen extends StatelessWidget {
                     width: 200,
                     height: 40,
                     child: ElevatedButton(
-                      onPressed: superAdminController.userUpdateResource.value.id != "" ? (){
-                        superAdminController.validateEdit();
-                        if(superAdminController.validateFormEdit.value == true){
-                          superAdminController.updateAcount();
+                      onPressed: userManagementController.userUpdateResource.value.id != "" ? (){
+                        userManagementController.validateEdit();
+                        if(userManagementController.validateFormEdit.value == true){
+                          userManagementController.updateAcount();
                         }
                       } : null,
                       child: Text('Update'),

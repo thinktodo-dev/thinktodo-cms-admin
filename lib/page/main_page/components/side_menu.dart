@@ -1,10 +1,11 @@
+import 'package:admin/page/main_page/main_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SideMenu extends StatelessWidget {
-  const SideMenu({
-    Key? key,
-  }) : super(key: key);
+  final MainController mainController = Get.put(MainController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,16 @@ class SideMenu extends StatelessWidget {
           DrawerListTile(
             title: "Dashboard",
             svgSrc: "assets/icons/menu_dashbord.svg",
-            press: () {},
+            press: () {
+              mainController.switchPage.value = 1;
+            },
+          ),
+          DrawerListTile(
+            title: "User Management",
+            svgSrc: "assets/icons/menu_dashbord.svg",
+            press: () {
+              mainController.switchPage.value = 2;
+            },
           ),
           DrawerListTile(
             title: "Transaction",
@@ -79,12 +89,12 @@ class DrawerListTile extends StatelessWidget {
       horizontalTitleGap: 0.0,
       leading: SvgPicture.asset(
         svgSrc,
-        color: Colors.black,
+        color: Colors.white54,
         height: 16,
       ),
       title: Text(
         title,
-        style: TextStyle(color: Colors.black),
+        style: TextStyle(color: Colors.white54),
       ),
     );
   }
