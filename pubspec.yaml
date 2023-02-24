@@ -32,7 +32,7 @@ dependencies:
   google_fonts: ^2.1.0
   flutter_svg: ^0.22.0
   fl_chart: ^0.36.1
-  data_table_2: ^2.0.3
+  data_table_2: ^2.3.12
   get: ^4.6.5
   get_storage: ^2.0.3
   url_strategy: ^0.2.0
