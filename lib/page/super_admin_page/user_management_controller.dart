@@ -48,6 +48,7 @@ class UserManagementController extends GetxController with GetSingleTickerProvid
     ServiceHelper.getListUser().then((response) async {
       Map<String, dynamic> data = json.decode(response!.body);
       List<dynamic> item = data['items'];
+      userList.clear();
       item.forEach((user) {userList.value.add(UserModel.fromJson(user)); });
     });
   }
@@ -63,7 +64,6 @@ class UserManagementController extends GetxController with GetSingleTickerProvid
       if(response!.isSuccess()){
         Map<String, dynamic> data = response?.data;
         userResource.refresh();
-        userList.clear();
         this.getListAccount();
         mainController.switchPage.value = 2;
         Get.snackbar("Notification", response?.message);
@@ -79,7 +79,6 @@ class UserManagementController extends GetxController with GetSingleTickerProvid
       if(response!.isSuccess()){
         Map<String, dynamic> data = response?.data;
         userResource.refresh();
-        userList.clear();
         this.getListAccount();
         mainController.switchPage.value = 2;
         Get.snackbar("Notification", response?.message);
@@ -118,16 +117,14 @@ class UserManagementController extends GetxController with GetSingleTickerProvid
     ServiceHelper.deleteUser(userResource.value).then((response) async {
       if(response!.isSuccess()){
         Map<String, dynamic> data = response?.data;
-        userResource.refresh();
-        userList.clear();
         this.getListAccount();
         mainController.switchPage.value = 2;
+        this.refreshForm();
         Get.snackbar("Notification", response?.message);
       }else{
         Get.snackbar("Notification", "Delete failed");
       }
     });
-    userList.removeAt(index);
   }
 
   void validateNew(){
