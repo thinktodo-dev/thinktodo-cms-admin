@@ -1,4 +1,5 @@
 import 'package:admin/models/user_model.dart';
+import 'package:admin/page/main_page/main_controller.dart';
 import 'package:admin/routes/app_routes.dart';
 import 'package:admin/service/resource/user_resource.dart';
 import 'package:admin/service/resource/user_update_resource.dart';
@@ -26,6 +27,7 @@ class UserManagementController extends GetxController with GetSingleTickerProvid
   final userUpdateResource = UserUpdateResource(id: "", username: "", password: "", typeAccount: "email", email: "", name: "", status: "", roleCode: "").obs;
   RxList<UserModel> userList = <UserModel>[].obs;
   final emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+  final MainController mainController = Get.put(MainController());
 
   late TabController controller;
 
@@ -38,7 +40,7 @@ class UserManagementController extends GetxController with GetSingleTickerProvid
   @override
   void onInit(){
     super.onInit();
-    getListAccount();
+    this.getListAccount();
     controller = TabController(length: 3, vsync: this);
   }
 
@@ -51,8 +53,9 @@ class UserManagementController extends GetxController with GetSingleTickerProvid
   }
 
   void edit(int index){
+    print(index);
     userUpdateResource.value = UserUpdateResource.fromJson(userList[index].toJson());
-    Get.rootDelegate.toNamed(Paths.userManagementEdit);
+    print(userUpdateResource.value);
   }
 
   void updateAcount(){
@@ -62,7 +65,7 @@ class UserManagementController extends GetxController with GetSingleTickerProvid
         userResource.refresh();
         userList.clear();
         this.getListAccount();
-        controller.animateTo(0);
+        mainController.switchPage.value = 2;
         Get.snackbar("Notification", response?.message);
         this.refreshForm();
       }else{
@@ -78,7 +81,7 @@ class UserManagementController extends GetxController with GetSingleTickerProvid
         userResource.refresh();
         userList.clear();
         this.getListAccount();
-        controller.animateTo(0);
+        mainController.switchPage.value = 2;
         Get.snackbar("Notification", response?.message);
         this.refreshForm();
       }else{
@@ -118,7 +121,7 @@ class UserManagementController extends GetxController with GetSingleTickerProvid
         userResource.refresh();
         userList.clear();
         this.getListAccount();
-        controller.animateTo(0);
+        mainController.switchPage.value = 2;
         Get.snackbar("Notification", response?.message);
       }else{
         Get.snackbar("Notification", "Delete failed");

@@ -10,5 +10,5 @@ class HttpUrlService {
   static String getDetailAccount = 'http://localhost:3000/core/super-admin/:id';
   static String createAccount = 'http://localhost:3000/core/super-admin';
   static String updateAccount = 'http://localhost:3000/core/super-admin';
-  static String deleteAccount = 'http://localhost:3000/core/super-admin/:id';
+  static String deleteAccount = 'http://localhost:3000/core/super-admin/';
 }

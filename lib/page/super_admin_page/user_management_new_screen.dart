@@ -1,9 +1,11 @@
+import 'package:admin/page/main_page/main_controller.dart';
 import 'package:admin/page/super_admin_page/user_management_controller.dart';
 import 'package:admin/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 class UserManagementNewScreen extends StatelessWidget {
   final UserManagementController userManagementController = Get.put(UserManagementController());
+  final MainController mainController = Get.put(MainController());
 
   @override
   Widget build(BuildContext context) {
@@ -11,33 +13,34 @@ class UserManagementNewScreen extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            Expanded(
-              flex: 1,
-              child: Row(
+            Container(
+              height: 160,
+              color: Color(0xFF2A2D3E),
+              child: Column(
                 children: [
-                  Column(
+                  Row(
                     children: [
-                      ElevatedButton.icon(
-                        onPressed: (){
-                          Get.rootDelegate.toNamed(Paths.userManagement);
-                        },
-                        icon: Icon(Icons.backspace_outlined),
-                        label: Text('Back')
-                      ),
-                   ]
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'New',
-                        style:TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
+                      Padding(
+                        padding: const EdgeInsets.only(left: 50.0,top: 20.0),
+                        child: ElevatedButton.icon(
+                            onPressed: (){
+                              mainController.switchPage.value = 2;
+                            },
+                            icon: Icon(Icons.backspace_outlined),
+                            label: Text(
+                                'Back',
+                              style: Get.textTheme.bodyMedium?.copyWith(color: Colors.white),
+                            )
                         ),
                       ),
                     ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: Text(
+                      'New',
+                      style: Get.textTheme.titleLarge?.copyWith(color: Colors.white)
+                    ),
                   ),
                 ],
               ),
@@ -53,6 +56,7 @@ class UserManagementNewScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 20.0, bottom: 10.0),
                         child: TextFormField(
+                          style: Get.textTheme.bodyLarge?.copyWith(color: Colors.white),
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             icon: Icon(Icons.person),
@@ -67,14 +71,13 @@ class UserManagementNewScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 40.0),
                         child: Text(
                           '${userManagementController.erUsernameNew.value}',
-                          style: TextStyle(
-                            color: Colors.red,
-                          ),
+                          style: Get.textTheme.bodyMedium?.copyWith(color: Colors.red),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                         child: TextFormField(
+                          style: Get.textTheme.bodyLarge?.copyWith(color: Colors.white),
                           obscureText: true,
                           decoration: InputDecoration(
                               border: OutlineInputBorder(),
@@ -90,14 +93,13 @@ class UserManagementNewScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 40.0),
                         child: Text(
                           '${userManagementController.erPasswordNew.value}',
-                          style: TextStyle(
-                              color: Colors.red
-                          ),
+                          style: Get.textTheme.bodyMedium?.copyWith(color: Colors.red),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                         child: TextFormField(
+                          style: Get.textTheme.bodyLarge?.copyWith(color: Colors.white),
                           decoration: InputDecoration(
                               border: OutlineInputBorder(),
                               icon: Icon(Icons.email),
@@ -112,14 +114,13 @@ class UserManagementNewScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 40.0),
                         child: Text(
                           '${userManagementController.erEmailNew.value}',
-                          style: TextStyle(
-                              color: Colors.red
-                          ),
+                          style: Get.textTheme.bodyMedium?.copyWith(color: Colors.red),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                         child: TextFormField(
+                          style: Get.textTheme.bodyLarge?.copyWith(color: Colors.white),
                           decoration: InputDecoration(
                               border: OutlineInputBorder(),
                               icon: Icon(Icons.person),
@@ -134,9 +135,7 @@ class UserManagementNewScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 40.0),
                         child: Text(
                           '${userManagementController.erNameNew.value}',
-                          style: TextStyle(
-                              color: Colors.red
-                          ),
+                          style: Get.textTheme.bodyMedium?.copyWith(color: Colors.red),
                         ),
                       ),
                       Padding(
@@ -154,7 +153,10 @@ class UserManagementNewScreen extends StatelessWidget {
                                     userManagementController.createAccount();
                                   }
                                 },
-                                child: Text('Submit'),
+                                child: Text(
+                                    'Submit',
+                                  style: Get.textTheme.headlineLarge?.copyWith(color: Colors.white),
+                                ),
                               ),
                             ),
                             SizedBox(
@@ -164,7 +166,10 @@ class UserManagementNewScreen extends StatelessWidget {
                                 onPressed: (){
                                   userManagementController.refreshForm();
                                 },
-                                child: Text('Refresh'),
+                                child: Text(
+                                    'Refresh',
+                                  style: Get.textTheme.headlineLarge?.copyWith(color: Colors.white),
+                                ),
                               ),
                             )
                           ],
