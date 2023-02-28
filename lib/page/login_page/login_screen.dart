@@ -27,6 +27,7 @@ class LoginScreen extends StatelessWidget {
                   child: Card(
                     elevation: 10,
                     child: Container(
+                      color: Colors.white,
                       width: 444,
                       height: 500.33,
                       child: Column(
@@ -92,6 +93,7 @@ class LoginScreen extends StatelessWidget {
                                       borderSide: BorderSide(color: loginController.erValidateUsername.value? Colors.black12: Colors.red, width: 2.0),
                                     ),
                                   ),
+                                  style: TextStyle(color: Colors.black),
                                 ),
                                 Row(
                                   children: [
@@ -131,6 +133,7 @@ class LoginScreen extends StatelessWidget {
                                       borderSide: BorderSide(color: loginController.erValidatePassword.value? Colors.black12: Colors.red, width: 2.0),
                                     ),
                                   ),
+                                    style: TextStyle(color: Colors.black),
                                 ),
                                   Row(
                                     children: [

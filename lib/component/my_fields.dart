@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../constants/constants.dart';
 import 'file_info_card.dart';
+import 'package:get/get.dart';
 
 class MyFiles extends StatelessWidget {
   const MyFiles({
@@ -20,7 +21,7 @@ class MyFiles extends StatelessWidget {
           children: [
             Text(
               "My Files",
-              style: Theme.of(context).textTheme.subtitle1,
+              style: Get.textTheme.titleMedium,
             ),
             ElevatedButton.icon(
               style: TextButton.styleFrom(
