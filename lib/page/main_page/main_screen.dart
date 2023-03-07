@@ -43,15 +43,13 @@ class MainScreen extends StatelessWidget {
   Widget switchChild(int switchValue) {
     switch (switchValue) {
       case 1:
-        return DashboardScreen();
-      case 2:
         return UserManagementScreen();
-      case 3:
+      case 2:
         return UserManagementNewScreen();
-      case 4:
+      case 3:
         return UserManagementEditScreen();
       default:
-        return DashboardScreen();
+        return UserManagementScreen();
     }
   }
 }

@@ -16,7 +16,7 @@ class RecentFiles extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(defaultPadding),
         decoration: BoxDecoration(
-          color: secondaryColor,
+          color: primaryColor,
           borderRadius: const BorderRadius.all(Radius.circular(10)),
         ),
         child: Column(
@@ -69,7 +69,6 @@ DataRow recentFileDataRow(RecentFile fileInfo) {
               padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
               child: Text(
                   fileInfo.title!,
-                  style: TextStyle(color: Colors.white),
               ),
             ),
           ],
@@ -77,12 +76,10 @@ DataRow recentFileDataRow(RecentFile fileInfo) {
       ),
       DataCell(Text(
           fileInfo.date!,
-            style: TextStyle(color: Colors.white),
           )
         ),
       DataCell(Text(
           fileInfo.size!,
-          style: TextStyle(color: Colors.white),
       )),
     ],
   );

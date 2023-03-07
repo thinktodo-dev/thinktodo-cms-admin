@@ -22,7 +22,7 @@ List demoMyFiles = [
     numOfFiles: 1328,
     svgSrc: "assets/icons/Documents.svg",
     totalStorage: "1.9GB",
-    color: primaryColor,
+    color: Colors.white,
     percentage: 35,
   ),
   CloudStorageInfo(
@@ -38,7 +38,7 @@ List demoMyFiles = [
     numOfFiles: 1328,
     svgSrc: "assets/icons/one_drive.svg",
     totalStorage: "1GB",
-    color: Color(0xFFA4CDFF),
+    color: Color(0xFFEAF2FD),
     percentage: 10,
   ),
   CloudStorageInfo(
@@ -46,7 +46,7 @@ List demoMyFiles = [
     numOfFiles: 5328,
     svgSrc: "assets/icons/drop_box.svg",
     totalStorage: "7.3GB",
-    color: Color(0xFF007EE5),
+    color: Color(0xFF42E3EC),
     percentage: 78,
   ),
 ];

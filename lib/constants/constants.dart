@@ -15,6 +15,8 @@ const secondaryColor = Color(0xFF2A2D3E);
 const bgColor = Color(0xFF212332);
 const Color kColorBlack = Color(0xff000000);
 const Color kColorWhite = Color(0xffffffff);
+const Color backGround = Color(0xFFf3f4f9);
+const Color hover = Color(0xFFd1d1d1);
 
 
 //font suze

@@ -17,7 +17,7 @@ class FileInfoCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
-        color: secondaryColor,
+        color: primaryColor,
         borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       child: Column(
@@ -40,14 +40,14 @@ class FileInfoCard extends StatelessWidget {
                   color: info.color,
                 ),
               ),
-              Icon(Icons.more_vert, color: Colors.white54)
+              Icon(Icons.more_vert, color: Colors.black)
             ],
           ),
           Text(
             info.title!,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.black),
           ),
           ProgressLine(
             color: info.color,
@@ -61,14 +61,14 @@ class FileInfoCard extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .caption!
-                    .copyWith(color: Colors.white70),
+                    .copyWith(color: Colors.black),
               ),
               Text(
                 info.totalStorage!,
                 style: Theme.of(context)
                     .textTheme
                     .caption!
-                    .copyWith(color: Colors.white),
+                    .copyWith(color: Colors.black),
               ),
             ],
           )

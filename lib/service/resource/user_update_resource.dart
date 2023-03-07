@@ -37,8 +37,6 @@ class UserUpdateResource {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['username'] = username;
-    data['password'] = password;
-    data['type_account'] = typeAccount;
     data['email'] = email;
     data['name'] = name;
     data['status'] = status;

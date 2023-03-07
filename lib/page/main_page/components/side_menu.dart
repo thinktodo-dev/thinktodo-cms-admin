@@ -1,3 +1,4 @@
+import 'package:admin/constants/constants.dart';
 import 'package:admin/page/main_page/main_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,61 +11,78 @@ class SideMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
-        children: [
-          DrawerHeader(
-            child: Image.asset("assets/images/odet8_logoWhite.png"),
-          ),
-          DrawerListTile(
-            title: "Dashboard",
-            svgSrc: "assets/icons/menu_dashbord.svg",
-            press: () {
-              mainController.switchPage.value = 1;
-            },
-          ),
-          DrawerListTile(
-            title: "User Management",
-            svgSrc: "assets/icons/menu_dashbord.svg",
-            press: () {
-              mainController.switchPage.value = 2;
-            },
-          ),
-          DrawerListTile(
-            title: "Transaction",
-            svgSrc: "assets/icons/menu_tran.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Task",
-            svgSrc: "assets/icons/menu_task.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Documents",
-            svgSrc: "assets/icons/menu_doc.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Store",
-            svgSrc: "assets/icons/menu_store.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Notification",
-            svgSrc: "assets/icons/menu_notification.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Profile",
-            svgSrc: "assets/icons/menu_profile.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Settings",
-            svgSrc: "assets/icons/menu_setting.svg",
-            press: () {},
-          ),
-        ],
+      child: Obx( () => ListView(
+          children: [
+            DrawerHeader(
+              child: Image.asset(
+                  "assets/images/odet8_logoWhite.png",
+                color: Colors.black,
+                colorBlendMode: BlendMode.modulate,
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                color: mainController.switchPage.value == 1 ? hover
+                    : mainController.switchPage.value == 2 ? hover
+                    : mainController.switchPage.value ==3 ? hover : null,
+              ),
+              child: DrawerListTile(
+                title: "User Management",
+                svgSrc: "assets/icons/menu_dashbord.svg",
+                press: () {
+                  mainController.switchPage.value = 1;
+                },
+              ),
+            ),
+            // Container(
+            //   decoration: BoxDecoration(
+            //     color: mainController.switchPage.value == 1 ? hover : null,
+            //   ),
+            //   child: DrawerListTile(
+            //     title: "Dashboard",
+            //     svgSrc: "assets/icons/menu_dashbord.svg",
+            //     press: () {
+            //       mainController.switchPage.value = 1;
+            //     },
+            //   ),
+            // ),
+            // DrawerListTile(
+            //   title: "Transaction",
+            //   svgSrc: "assets/icons/menu_tran.svg",
+            //   press: () {},
+            // ),
+            // DrawerListTile(
+            //   title: "Task",
+            //   svgSrc: "assets/icons/menu_task.svg",
+            //   press: () {},
+            // ),
+            // DrawerListTile(
+            //   title: "Documents",
+            //   svgSrc: "assets/icons/menu_doc.svg",
+            //   press: () {},
+            // ),
+            // DrawerListTile(
+            //   title: "Store",
+            //   svgSrc: "assets/icons/menu_store.svg",
+            //   press: () {},
+            // ),
+            // DrawerListTile(
+            //   title: "Notification",
+            //   svgSrc: "assets/icons/menu_notification.svg",
+            //   press: () {},
+            // ),
+            // DrawerListTile(
+            //   title: "Profile",
+            //   svgSrc: "assets/icons/menu_profile.svg",
+            //   press: () {},
+            // ),
+            // DrawerListTile(
+            //   title: "Settings",
+            //   svgSrc: "assets/icons/menu_setting.svg",
+            //   press: () {},
+            // ),
+          ],
+        ),
       ),
     );
   }
@@ -89,12 +107,12 @@ class DrawerListTile extends StatelessWidget {
       horizontalTitleGap: 0.0,
       leading: SvgPicture.asset(
         svgSrc,
-        color: Colors.white54,
+        color: Colors.black,
         height: 16,
       ),
       title: Text(
         title,
-        style: TextStyle(color: Colors.white54),
+        style: TextStyle(color: Colors.black),
       ),
     );
   }
