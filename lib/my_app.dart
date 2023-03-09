@@ -30,7 +30,7 @@ class MyApp {
       themeMode: ThemeMode.dark,
       theme: ThemeData(
         primarySwatch: Colors.green,
-          brightness: Brightness.dark,
+          brightness: Brightness.light,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         textTheme: TextTheme(
           // for all TextWidgets.

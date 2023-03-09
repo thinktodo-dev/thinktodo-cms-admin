@@ -14,7 +14,7 @@ class StorageDetails extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
-        color: secondaryColor,
+        color: primaryColor,
         borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       child: SingleChildScrollView(
@@ -26,7 +26,6 @@ class StorageDetails extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
-                color: Colors.white,
               ),
             ),
             SizedBox(height: defaultPadding),

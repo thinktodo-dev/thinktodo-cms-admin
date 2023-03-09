@@ -33,7 +33,7 @@ class LoginController extends GetxController{
     if(password.value == "" || password.value.isEmpty){
       erPassword.value = "Please enter password";
       erValidatePassword.value = false;
-    } else if(password.value.length <6 || password.value.length >30){
+    } else if(password.value.length < 4 || password.value.length >30){
       erPassword.value = "Please enter a password between 6 and 30 characters";
       erValidatePassword.value = false;
     }else{
@@ -60,7 +60,7 @@ class LoginController extends GetxController{
   void verifyToken(){
     ServiceHelper.verifyToken().then((response) async {
       Map<String, dynamic> data = json.decode(response!.body);
-      if(data['role_code'] == 'admin' || data['role_code'] == 'super_admin'){
+      if(data['role_code'] == 'admin' || data['role_code'] == 'super-admin'){
         Get.rootDelegate.toNamed(Paths.homePage);
       }else{
         Get.snackbar("Notification", "You don't have access");
